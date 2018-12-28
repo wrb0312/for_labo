@@ -11,7 +11,7 @@
 ![生成サンプル](https://github.com/wrb0312/for_labo/blob/master/gan/result/figs/result.jpg)
 
 ## 低次元多様体上での変化
-低次元空間において、AとBの間に存在する画像を可視化した.
 ![画像AB](https://github.com/wrb0312/for_labo/blob/master/gan/result/figs/AB.jpg)
 
+低次元空間において、AとBの間に存在する画像を可視化した.
 ![AからBへの変化](https://github.com/wrb0312/for_labo/blob/master/gan/result/figs/latent_A2B.jpg)
