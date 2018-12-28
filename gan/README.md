@@ -15,3 +15,6 @@
 
 低次元空間において、AとBの間に存在する画像を可視化した.
 ![AからBへの変化](https://github.com/wrb0312/for_labo/blob/master/gan/result/figs/latent_A2B.jpg)
+
+## 誤差の推移
+![誤差変化](https://github.com/wrb0312/for_labo/blob/master/gan/result/figs/loss.jpg)
