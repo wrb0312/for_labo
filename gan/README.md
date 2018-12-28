@@ -6,3 +6,6 @@
 
 ## plot logs
 `python view_log.py -j result/log.json -s result/figs`
+
+## 生成サンプル
+![生成サンプル](https://github.com/wrb0312/for_labo/blob/master/gan/result/figs/result.jpg)
