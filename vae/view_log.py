@@ -19,28 +19,31 @@ def main():
     json_path = args.json_path
     save_path = args.save_path
 
-    print("GAN MNIST example for log")
+    print("VAE MNIST example for log")
     print("json path: {}".format(json_path))
     print("save path: {}".format(save_path))
 
-    loss_d_train = []
-    loss_g_train = []
-    loss_d_test = []
-    loss_g_test = []
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+
+    loss_AE_train = []
+    loss_KL_train = []
+    loss_AE_test = []
+    loss_KL_test = []
     epoch = []
     with open(json_path) as f:
         for i in f:
             j = json.loads(i)
-            loss_d_train.append(j["loss_D_train"])
-            loss_g_train.append(j["loss_G_train"])
-            loss_d_test.append(j["loss_D_test"])
-            loss_g_test.append(j["loss_G_test"])
+            loss_AE_train.append(j["loss_AE_train"])
+            loss_KL_train.append(j["loss_KL_train"])
+            loss_AE_test.append(j["loss_AE_test"])
+            loss_KL_test.append(j["loss_KL_test"])
             epoch.append(j["epoch"])
 
-    plt.plot(epoch, loss_d_train, label="loss_D_train", marker="*")
-    plt.plot(epoch, loss_g_train, label="loss_G_train", marker="*")
-    plt.plot(epoch, loss_d_test, label="loss_D_test", marker="*")
-    plt.plot(epoch, loss_g_test, label="loss_G_test", marker="*")
+    plt.plot(epoch, loss_AE_train, label="loss_AE_train", marker="*")
+    plt.plot(epoch, loss_KL_train, label="loss_KL_train", marker="*")
+    plt.plot(epoch, loss_AE_test, label="loss_AE_test", marker="*")
+    plt.plot(epoch, loss_KL_test, label="loss_KL_test", marker="*")
     plt.xticks(epoch[::3])
     plt.legend()
     plt.xlabel("epochs")

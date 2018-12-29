@@ -1,5 +1,5 @@
 ## Train
-`python train.py -e 50 -g 0 -z 128 -s result -b 64`
+`python train.py -e 50 -g 0 -z 32 -s result -b 64`
 
 ## Test
 `python test.py -m result/epoch50.gen -s result/figs -g 0`
