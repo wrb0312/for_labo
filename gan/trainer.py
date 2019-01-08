@@ -46,7 +46,6 @@ class Trainer:
             bar = tqdm(desc="Training", total=self.N, leave=False)
             for d in self.iter_train:
                 x, _ = dataset.concat_examples(d)
-                x = x*2 - 1
                 loss_D, loss_G = self.forward(x)
                 self.report.loss_D_train += float(loss_D * len(x))
                 self.report.loss_G_train += float(loss_G * len(x))
@@ -75,6 +74,8 @@ class Trainer:
 
             if not os.path.exists(self.save_path):
                 os.makedirs(self.save_path)
+            if not os.path.exists(os.path.join(self.save_path, "models")):
+                os.makedirs(os.path.join(self.save_path, "models"))
 
             self.report(self.keys_general, self.keys_train, self.keys_test)
 
@@ -83,16 +84,17 @@ class Trainer:
             self.report.init_log()
 
             serializers.save_npz(os.path.join(
-                self.save_path, "epoch{}.gen".format(epoch)), self.G)
+                self.save_path, "models", "epoch{}.gen".format(epoch)), self.G)
             serializers.save_npz(os.path.join(
-                self.save_path, "epoch{}.dis".format(epoch)), self.D)
+                self.save_path, "models", "epoch{}.dis".format(epoch)), self.D)
             serializers.save_npz(os.path.join(
-                self.save_path, "epoch{}.opt_gen".format(epoch)), self.opt_G)
+                self.save_path, "models", "epoch{}.opt_gen".format(epoch)), self.opt_G)
             serializers.save_npz(os.path.join(
-                self.save_path, "epoch{}.opt_dis".format(epoch)), self.opt_D)
+                self.save_path, "models", "epoch{}.opt_dis".format(epoch)), self.opt_D)
 
     def forward(self, x):
         batch_size = len(x)
+        x = x * 2 - 1
         x = x.reshape(batch_size, 1, 28, 28)
         x_real = chainer.Variable(self.xp.asarray(x))
         y_real = self.D(x_real)
